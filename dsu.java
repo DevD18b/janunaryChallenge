@@ -1,20 +1,13 @@
 import java.util.*;
-public class implementingDisjointSetUnionDs {
-  // implementing union find by rank.
-public static void main(String[] args) {
-    
-}
-
-
-}
-class dsu{
+public class dsu{
     ArrayList<Integer> parent =  new ArrayList<>();
     ArrayList<Integer> rank = new ArrayList<>();
-
+    ArrayList<Integer> size =  new ArrayList<>();
     dsu(int n){
         for(int i =0 ; i<n; i++){
             parent.add(i);
             rank.add(0);
+            size.add(1);
         }
     }
     int findParent(int node){
@@ -40,6 +33,22 @@ class dsu{
             int rankU = rank.get(ulu);
             rank.set(ulu, rankU+1);
         }
+    }
+    void unionBySize(int u ,int v){
+         int ulu = findParent(u);
+         int ulv = findParent(v);
+
+         if(size.get(ulv)>size.get(ulu)){
+            parent.set(ulu, ulv);
+            size.set(ulv, size.get(ulv)+size.get(ulu));
+         }
+         if(size.get(ulu)>size.get(ulv)){
+            parent.set(ulv, ulu);
+            size.set(ulu, size.get(ulv)+size.get(ulu));
+         }
+         else{
+            return;
+         }
     }
 
 }
