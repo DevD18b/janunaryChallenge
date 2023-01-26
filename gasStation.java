@@ -14,7 +14,7 @@ public class gasStation {
     }
         }
         total+=sum;
-        return total>0 ? position:-1;
+        return total>=0 ? position:-1;
    
 
     }
